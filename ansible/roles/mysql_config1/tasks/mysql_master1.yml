@@ -1,10 +1,7 @@
-- name: Config file my.cnf MySQL Server Master Node 1
+- name: Copy file my.cnf
   template:
     src: my.cnf.j2
     dest: /etc/my.cnf
-    owner: root
-    group: root
-    mode: 0644
   notify:
     - restart mysqld
 
@@ -22,4 +19,12 @@
   notify:
     - reload firewalld
 
+- name: Copy file replication.sh.j2
+  template:
+    src: replication.sh.j2
+    dest: /etc/keepalived/mysqltest.sh
 
+- name: Change permission for mysqltest.sh
+  file:
+    path: /etc/keepalived/mysqltest.sh
+    mode: 0755

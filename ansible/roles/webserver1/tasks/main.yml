@@ -13,6 +13,11 @@
     path: /home/future/webserver/wordpress/docker-entrypoint.sh
     mode: 0755
 
+- name: Change permission for wp-config-docker.php
+  file:
+    path: /home/future/webserver/wordpress/wp-config-docker.php
+    mode: 0755
+
 - name: Build images and run containers using docker compose
   shell:
     chdir: /home/future/webserver/

@@ -1,0 +1,8 @@
+ name: Transfer the script replication master-master
+  template:
+    src: replication.sh.j2
+    dest: /home/future/mysql/replication.sh
+    mode: 0755
+
+- name: Execute the script replication master-master
+  command: bash /home/future/mysql/replication.sh

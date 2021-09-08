@@ -1,14 +1,11 @@
-- name: Config file my.cnf MySQL Server Master Node 2
+- name: Copy file my.cnf
   template:
     src: my.cnf.j2
     dest: /etc/my.cnf
-    owner: root
-    group: root
-    mode: 0644
   notify:
     - restart mysqld
 
-- name: set firewalld
+- name: Setting firewalld
   firewalld:
     rich_rule: "{{ item }}"
     permanent: yes
