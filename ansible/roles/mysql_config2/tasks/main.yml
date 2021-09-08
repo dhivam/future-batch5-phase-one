@@ -1,4 +1,4 @@
- name: Config file my.cnf MySQL Server Master Node 2
+- name: Config file my.cnf MySQL Server Master Node 2
   import_tasks: mysql_master2.yml
 
 - name: Install and configuration keepalived

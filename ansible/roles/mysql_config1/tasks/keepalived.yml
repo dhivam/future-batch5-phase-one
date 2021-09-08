@@ -12,11 +12,11 @@
 - name: Copy file mysqltest.sh.j2
   template:
     src: mysqltest.sh.j2
-    dest: /etc/keepalived/
+    dest: /etc/keepalived/mysqltest.sh
 
 - name: Change permission for mysqltest.sh
   file:
-    path: /etc/keepalived/mysqltest.sh.j2
+    path: /etc/keepalived/mysqltest.sh
     mode: 0755
 
 - name: Copy file keepalived.conf.j2

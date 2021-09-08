@@ -6,12 +6,12 @@
 - name: Copy file mysql for create user
   template:
     src: create_user.sh.j2
-    dest: /home/future/mysql/
+    dest: /home/future/mysql/create_user.sh
 
 - name: Change permission for create_user.sh
   file:
-    path: /home/future/mysql/create_user.sh.j2
+    path: /home/future/mysql/create_user.sh
     mode: 0755
 
 - name: Execute the script mysql
-  command: bash /home/future/mysql/create_user.sh.j2
+  command: bash /home/future/mysql/create_user.sh

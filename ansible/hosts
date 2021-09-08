@@ -1,5 +1,7 @@
-[webserver]
+[webserver1]
 192.168.56.141
+
+[webserver2]
 192.168.56.142
 
 [haproxy]
@@ -12,7 +14,8 @@
 192.168.56.144
 
 [docker:children]
-webserver
+webserver1
+webserver2
 haproxy
 
 [db:children]

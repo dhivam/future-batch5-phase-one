@@ -4,7 +4,7 @@
   become: yes
 
   roles:
-    - mysql
+    - mysql_install
 
 - name: Install keepalived and config file MySQL Master 1
   hosts: dbmaster1
