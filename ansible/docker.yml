@@ -1,0 +1,7 @@
+- name: Install docker and docker compose
+  hosts: docker
+  remote_user: future
+  become: yes
+
+  roles:
+    - docker

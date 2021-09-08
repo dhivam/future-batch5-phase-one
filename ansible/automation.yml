@@ -1,0 +1,16 @@
+- name: SSH
+  import_playbook: ssh.yml
+
+- name: Docker
+  import_playbook: docker.yml
+
+- name: MySQL
+  import_playbook: mysql.yml
+    
+- name: Webserver
+  import_playbook: webserver.yml
+
+- name: HAproxy
+  import_playbook: haproxy.yml
+  
+

@@ -1,0 +1,7 @@
+- name: Create and run  haproxy container
+  hosts: haproxy
+  remote_user: future
+  become: yes
+
+  roles:
+    - haproxy

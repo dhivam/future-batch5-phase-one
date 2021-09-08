@@ -1,0 +1,15 @@
+- name: Set authorized key from file
+  authorized_key:
+    user: "future"
+    state: present
+    key: "{{ lookup('file', item) }}"
+  with_fileglob:
+  - /home/future/.ssh/*.pub
+
+- name: Open port ssh to firewalld
+  firewalld:
+    port: 22/tcp
+    permanent: yes
+    state: enabled
+  notify:
+    - reload firewalld

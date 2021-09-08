@@ -1,0 +1,36 @@
+- name: Install MySQL repository
+  yum:
+    name: "https://repo.mysql.com/mysql80-community-release-el7-3.noarch.rpm"
+    state: present
+
+- name: Disable MySQL 5.7 repository
+  shell: yum-config-manager --disable mysql57-community
+
+- name: Enable MySQL 8.0 repository
+  shell: yum-config-manager --enable mysql80-community
+
+- name: Install MySQL packages
+  yum:
+    name: "{{ packages }}"
+    state: present
+  vars:
+    packages:
+      - mysql-community-server
+      - mysql-community-client
+
+- name: Start and enable the MySQL service
+  service:
+    name: mysqld
+    state: started
+    enabled: true
+
+- name: Acquire temporary root password
+  shell: "awk -F': ' '$0 ~ \"temporary password\"{print $2}' /var/log/mysqld.log"
+  register: mysql_root_password_temp
+
+- name: Set new root password from default temporary password
+  shell: "mysql -e \"SET PASSWORD = 'Secret-4-root';\"
+         --connect-expired-password -uroot -p'{{ mysql_root_password_temp.stdout }}'
+         && touch /root/.my.password.changed"
+  args:
+    creates: /root/.my.password.changed

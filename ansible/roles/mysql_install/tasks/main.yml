@@ -1,0 +1,5 @@
+- name: Install MySQL Server
+  import_tasks: install.yml
+
+- name: Create user
+  import_tasks: create_user.yml

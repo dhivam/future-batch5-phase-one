@@ -1,0 +1,33 @@
+- name: Install keepalived
+  yum:
+    name: keepalived
+    state: present
+
+- name: Make backup file keepalived.conf
+  copy:
+    src: /etc/keepalived/keepalived.conf
+    dest: /etc/keepalived/keepalived.conf.bak
+    remote_src: yes
+
+- name: Copy file mysqltest.sh.j2
+  template:
+    src: mysqltest.sh.j2
+    dest: /etc/keepalived/
+
+- name: Change permission for mysqltest.sh
+  file:
+    path: /etc/keepalived/mysqltest.sh.j2
+    mode: 0755
+
+- name: Copy file keepalived.conf.j2
+  template:
+    src: keepalived.conf.j2
+    dest: /etc/keepalived/keepalived.conf
+  notify:
+    - restart keepalived
+
+- name: Start and enable keepalived
+  service:
+    name: keepalived
+    state: started
+    enabled: yes

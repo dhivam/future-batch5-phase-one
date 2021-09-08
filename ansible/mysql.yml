@@ -1,0 +1,39 @@
+- name: Install MySQL server
+  hosts: db
+  remote_user: future
+  become: yes
+
+  roles:
+    - mysql
+
+- name: Install keepalived and config file MySQL Master 1
+  hosts: dbmaster1
+  remote_user: future
+  become: yes
+
+  roles:
+    - mysql_config1
+
+- name: Install keepalived and config file MySQL Master 2
+  hosts: dbmaster2
+  remote_user: future
+  become: yes
+
+  roles:
+    - mysql_config2
+
+- name: MySQL Replication Master Node 1
+  hosts: dbmaster1
+  remote_user: future
+  become: yes
+
+  roles:
+    - mysql_rep1
+
+- name: MySQL Replication Master Node 2
+  hosts: dbmaster2
+  remote_user: future
+  become: yes
+
+  roles:
+    - mysql_rep2
