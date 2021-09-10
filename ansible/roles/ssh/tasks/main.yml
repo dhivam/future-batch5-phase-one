@@ -1,6 +1,6 @@
-- name: Set authorized key from file
+- name: Distribute the SSH key to remote servers
   authorized_key:
-    user: "future"
+    user: future
     state: present
     key: "{{ lookup('file', item) }}"
   with_fileglob:

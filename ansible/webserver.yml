@@ -2,7 +2,6 @@
   hosts: webserver1
   remote_user: future
   become: yes
-
   roles:
     - webserver1
 
@@ -10,6 +9,5 @@
   hosts: webserver2
   remote_user: future
   become: yes
-
   roles:
     - webserver2

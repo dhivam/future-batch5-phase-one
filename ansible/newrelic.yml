@@ -1,0 +1,12 @@
+- name: Install newrelic agent
+  hosts: webserver1
+  remote_user: future
+  become: yes
+  roles:
+    - role: newrelic  
+      nrinfragent_os_name: redhat
+      nrinfragent_os_version: 7
+      nrinfragent_config:
+        license_key: 5c4453a8f99d32c84917b882ab764d78f8f6NRAL
+        log_file: /var/log/newrelic/nr-infra.log
+        log_to_stdout: false

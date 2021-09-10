@@ -6,6 +6,6 @@
 
 - name: Create symbolic link for docker-compose
   file:
-    src: "/usr/local/bin/docker-compose"
-    dest: "/usr/bin/docker-compose"
+    src: /usr/local/bin/docker-compose
+    dest: /usr/bin/docker-compose
     state: link

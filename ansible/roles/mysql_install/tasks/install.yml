@@ -34,3 +34,4 @@
          && touch /root/.my.password.changed"
   args:
     creates: /root/.my.password.changed
+

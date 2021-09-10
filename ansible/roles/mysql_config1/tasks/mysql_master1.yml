@@ -19,12 +19,3 @@
   notify:
     - reload firewalld
 
-- name: Copy file replication.sh.j2
-  template:
-    src: replication.sh.j2
-    dest: /etc/keepalived/mysqltest.sh
-
-- name: Change permission for mysqltest.sh
-  file:
-    path: /etc/keepalived/mysqltest.sh
-    mode: 0755

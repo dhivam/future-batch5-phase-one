@@ -20,17 +20,21 @@ SET PERSIST validate_password.number_count = 0;
 SET PERSIST validate_password.policy=LOW;
 flush privileges;
 
-#echo "Create user for root"
+#echo "Create User for Root"
 create user if not exists '$MYSQL_ROOT_USER'@'$MYSQL1' identified with mysql_native_password by '$MYSQL_ROOT_PASSWORD';
-GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ROOT_USER'@'$MYSQL1';
 create user if not exists '$MYSQL_ROOT_USER'@'$MYSQL2' identified with mysql_native_password by '$MYSQL_ROOT_PASSWORD';
-GRANT ALL PRIVILEGES ON *.* TO '$MYSQL_ROOT_USER'@'$MYSQL2';
 
-#echo "Create user for replication"
+#echo "Setting Privileges"
+grant all privileges on *.* to '$MYSQL_ROOT_USER'@'$MYSQL1';
+grant all privileges on *.* to '$MYSQL_ROOT_USER'@'$MYSQL2';
+
+#echo "Create User for Replication"
 create user if not exists '$MYSQL_USER_REPLICA'@'$MYSQL1' IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY '$MYSQL_USER_PASSWORD_REPLICA';
-GRANT REPLICATION SLAVE ON *.* TO '$MYSQL_USER_REPLICA'@'$MYSQL1';
 create user if not exists '$MYSQL_USER_REPLICA'@'$MYSQL2' IDENTIFIED WITH MYSQL_NATIVE_PASSWORD BY '$MYSQL_USER_PASSWORD_REPLICA';
-GRANT REPLICATION SLAVE ON *.* TO '$MYSQL_USER_REPLICA'@'$MYSQL2';
+
+#echo "Setting Privileges"
+grant replication slave on *.* to '$MYSQL_USER_REPLICA'@'$MYSQL1';
+grant replication slave on *.* to '$MYSQL_USER_REPLICA'@'$MYSQL2';
 
 #echo "Create DB For Webserver"
 Create database if not exists $MYSQL_DATABASE;

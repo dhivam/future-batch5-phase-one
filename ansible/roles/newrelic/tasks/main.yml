@@ -1,0 +1,25 @@
+- name: Download infra agent
+  yum_repository:
+    baseurl: "https://download.newrelic.com/infrastructure_agent/linux/yum/el/7/x86_64"
+    gpgcheck: "yes"
+    gpgkey: https://download.newrelic.com/infrastructure_agent/gpg/newrelic-infra.gpg
+    name: 'newrelic-infra'
+    repo_gpgcheck: "yes"
+    state: present
+    description: New Relic Infrastructure
+
+- name: Run makecache to actually import gpg key
+  command: "yum -q makecache -y --disablerepo='*' --enablerepo='newrelic-infra'"
+
+- name: Install infra agent
+  yum:
+    name: newrelic-infra
+    state: latest
+  notify: start agent
+
+- name: Setup agent config
+  template:
+    src: newrelic-infra.yml.j2
+    dest: /etc/newrelic-infra.yml
+    mode: 0600
+  notify: start agent

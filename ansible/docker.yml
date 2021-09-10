@@ -2,6 +2,5 @@
   hosts: docker
   remote_user: future
   become: yes
-
   roles:
     - docker

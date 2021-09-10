@@ -1,0 +1,5 @@
+- name: start agent
+  systemd:
+    name: newrelic-infra
+    state: restarted
+    enabled: "yes"

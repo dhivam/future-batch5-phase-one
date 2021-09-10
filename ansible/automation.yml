@@ -12,5 +12,8 @@
 
 - name: HAproxy
   import_playbook: haproxy.yml
+
+- name: Newrelic
+  import_playbook: newrelic.yml
   
 

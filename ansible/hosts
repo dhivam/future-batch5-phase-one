@@ -1,3 +1,6 @@
+[localhost]
+127.0.0.1
+
 [webserver1]
 192.168.56.141
 
@@ -7,10 +10,10 @@
 [haproxy]
 192.168.56.145
 
-[dbmaster1]
+[database1]
 192.168.56.143
 
-[dbmaster2]
+[database2]
 192.168.56.144
 
 [docker:children]
@@ -19,8 +22,5 @@ webserver2
 haproxy
 
 [db:children]
-dbmaster1
-dbmaster2
-
-
-
+database1
+database2

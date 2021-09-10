@@ -1,6 +1,6 @@
 - name: Creates directory
   file:
-    path: /home/future/webserver
+    path: /home/future/webserver/
     state: directory
 
 - name: Copy file to directory webserver
@@ -16,6 +16,11 @@
 - name: Change permission for wp-config-docker.php
   file:
     path: /home/future/webserver/wordpress/wp-config-docker.php
+    mode: 0755
+
+- name: Change permission for default.conf
+  file:
+    path: /home/future/webserver/nginx/default.conf
     mode: 0755
 
 - name: Build images and run containers using docker compose

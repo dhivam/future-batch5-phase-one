@@ -2,23 +2,20 @@
   hosts: db
   remote_user: future
   become: yes
-
   roles:
     - mysql_install
 
-- name: Install keepalived and config file MySQL Master 1
+- name: Install keepalived and copy config file for MySQL Master 1
   hosts: dbmaster1
   remote_user: future
   become: yes
-
   roles:
     - mysql_config1
 
-- name: Install keepalived and config file MySQL Master 2
+- name: Install keepalived and copy config file for MySQL Master 2
   hosts: dbmaster2
   remote_user: future
   become: yes
-
   roles:
     - mysql_config2
 
@@ -26,7 +23,6 @@
   hosts: dbmaster1
   remote_user: future
   become: yes
-
   roles:
     - mysql_rep1
 
@@ -34,6 +30,5 @@
   hosts: dbmaster2
   remote_user: future
   become: yes
-
   roles:
     - mysql_rep2
