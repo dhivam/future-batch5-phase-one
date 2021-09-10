@@ -1,5 +1,5 @@
 - name: Install newrelic agent
-  hosts: webserver1
+  hosts: all
   remote_user: future
   become: yes
   roles:

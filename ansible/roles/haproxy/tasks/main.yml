@@ -13,9 +13,9 @@
     path: /home/future/haproxy/docker-entrypoint.sh
     mode: 0755
 
-- name: Change permission for default.conf
+- name: Change permission for haproxy.cfg
   file:
-    path: /home/future/haproxy/default.conf
+    path: /home/future/haproxy/haproxy.cfg
     mode: 0755
 
 - name: Change permission for run_container.sh
