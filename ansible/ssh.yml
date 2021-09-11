@@ -1,5 +1,6 @@
 - name: Distribute SSH public key to remote servers
   hosts: all
+  remote_user: future
   become: yes
   roles:
     - ssh
