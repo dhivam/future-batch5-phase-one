@@ -1,3 +1,7 @@
+#path
+dir_path: /home/future/mysql
+
+#create_user.sh
 webserver1: 192.168.56.141
 webserver1: 192.168.56.142
 mysql1: 192.168.56.143
