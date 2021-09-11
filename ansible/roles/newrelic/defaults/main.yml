@@ -1,2 +1,5 @@
 infra_config_file: /etc/newrelic-infra.yml
+enable_process_metrics: true
+status_server_enabled: true
+status_server_port: 18003
 license_key: 5c4453a8f99d32c84917b882ab764d78f8f6NRAL
