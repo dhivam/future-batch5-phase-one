@@ -1,0 +1,20 @@
+- name: Copy file my.cnf
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+  notify:
+    - restart mysqld
+
+- name: Setting firewalld
+  firewalld:
+    rich_rule: "{{ item }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+    zone: public
+  with_items:
+    - 'rule family="ipv4" source address="192.168.56.141" port protocol="tcp" port="3306" accept'
+    - 'rule family="ipv4" source address="192.168.56.142" port protocol="tcp" port="3306" accept'
+    - 'rule family="ipv4" source address="192.168.56.144" port protocol="tcp" port="3306" accept'
+  notify:
+    - reload firewalld

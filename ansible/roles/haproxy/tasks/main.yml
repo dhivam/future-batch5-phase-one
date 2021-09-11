@@ -1,27 +1,21 @@
 - name: Creates directory
   file:
-    path: /home/future/haproxy
+    path: "{{ dir_path }}"
     state: directory
 
-- name: Copy file to directory haproxy
+- name: Copy the required files to run haproxy
   copy:
-    src: /home/future/future5-phase-one/docker/haproxy/
-    dest: /home/future/haproxy/
+    src: roles/haproxy/files/
+    dest: "{{ dir_path }}"
 
 - name: Change permission for docker-entrypoint.sh
   file:
-    path: /home/future/haproxy/docker-entrypoint.sh
-    mode: 0755
-
-- name: Change permission for haproxy.cfg
-  file:
-    path: /home/future/haproxy/haproxy.cfg
-    mode: 0755
-
-- name: Change permission for run_container.sh
-  file:
-    path: /home/future/haproxy/run_container.sh
-    mode: 0755
+    path: "{{ dir_path }}"
+    mode: 0755    
+    with_items:
+      - { path: '~/haproxy/docker-entrypoint.sh'}
+      - { path: '~/haproxy/haproxy.cfg'}
+      - { path: '~/haproxy/run_container.sh'}
 
 - name: Build haproxy docker image
   shell:

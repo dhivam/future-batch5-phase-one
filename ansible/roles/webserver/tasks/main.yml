@@ -1,0 +1,23 @@
+- name: Creates directory
+  file:
+    path: "{{ dir_path }}"
+    state: directory
+
+- name: Copy file to directory webserver
+  copy:
+    src: roles/webserver/files/
+    dest: "{{ dir_path }}"
+
+- name: Change permission for docker-entrypoint.sh
+  file:
+    path: "{{ dir_path }}"
+    mode: 0755    
+    with_items:
+      - { path: '~/webserver/wordpress/docker-entrypoint.sh'}
+      - { path: '~/webserver/wordpress/wp-config-docker.php'}
+      - { path: '~/webserver/nginx/default.conf'}
+      
+- name: Build images and run containers using docker compose
+  shell:
+    chdir: "{{ dir_path }}"
+    cmd: docker-compose up -d

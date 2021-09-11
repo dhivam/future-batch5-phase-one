@@ -19,7 +19,7 @@
     state: started
     enabled: yes
 
-- name: Add user to "future" to docker group
+- name: Add user future to docker group
   user:
     name: future
     groups: docker

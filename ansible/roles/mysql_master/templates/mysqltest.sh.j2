@@ -1,0 +1,13 @@
+#!/bin/bash
+# if mysql is dead in this node, then other node will bind the IP.
+MYSQL_HOST="{{ mysql_host }}"
+MYSQL_PORT="{{ mysql_port }}"
+MYSQL_USERNAME="{{ mysql_username }}"
+MYSQL_PASSWORD="{{ mysql_password }}"
+mysql --host=$MYSQL_HOST --port=$MYSQL_PORT --user=$MYSQL_USERNAME --password=$$
+if [ $? -ne 0 ]; then
+ echo "bad"
+ exit 1      # mysql node is bad
+fi
+echo "good"
+exit 0       # mysql node is good

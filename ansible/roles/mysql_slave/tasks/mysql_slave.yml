@@ -1,0 +1,29 @@
+- name: Copy file my.cnf
+  template:
+    src: my.cnf.j2
+    dest: /etc/my.cnf
+  notify:
+    - restart mysqld
+
+- name: Setting firewalld
+  firewalld:
+    rich_rule: "{{ item }}"
+    permanent: yes
+    immediate: yes
+    state: enabled
+    zone: public
+  with_items:
+    - 'rule family="ipv4" source address="192.168.56.141" port protocol="tcp" port="3306" accept'
+    - 'rule family="ipv4" source address="192.168.56.142" port protocol="tcp" port="3306" accept'
+    - 'rule family="ipv4" source address="192.168.56.143" port protocol="tcp" port="3306" accept'
+  notify:
+    - reload firewalld
+
+-  name: Copy file for MySQL replication master-master
+  template:
+    src: replication.sh.j2
+    dest: "{{ dir_path }}/mysql/replication.sh"
+    mode: 0755
+
+- name: Execute file for MySQL replication master-master
+  command: bash {{ dir_path }}/mysql/replication.sh

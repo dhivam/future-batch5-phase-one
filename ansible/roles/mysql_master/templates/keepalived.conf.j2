@@ -1,0 +1,24 @@
+vrrp_script chk_mysql {
+ script "{{ script }}"
+ interval {{ interval }}
+ weight {{ weight }}
+}
+
+vrrp_instance VI_1 {
+        state {{ state }}
+        interface {{ interface }}
+        virtual_router_id {{ virtual_router_id }}
+        priority {{ priority }}
+        advert_int {{ advert_int }}
+        authentication {
+              auth_type {{ auth_type }}
+              auth_pass {{ auth_pass }}
+        }
+	virtual_ipaddress {
+              {{ virtual_ipaddres }}
+        }
+
+	track_scripts {
+              chk_mysql
+        }
+}

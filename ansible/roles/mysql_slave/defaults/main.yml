@@ -1,0 +1,44 @@
+#path 
+dir_path: /home/future/mysql
+
+#my.cnf
+server_id: 2
+replicate_same_server_id: 0
+auto_increment_increment: 10
+auto_increment_offset: 2
+relay_log: /var/lib/mysql/node2-relay-bin
+relay_log_index: /var/lib/mysql/node2-relay-bin.index
+log_error: /var/log/mysql/mysql.error
+master_info_file: /var/lib/mysql/mysql-master.info
+relay_log_info_file: /var/lib/mysql/node1-relay-log.info
+log_bin: /var/lib/mysql/node2-bin
+default_authentication_plugin: mysql_native_password
+
+#master-slave replication
+master_host: 192.168.56.143
+slave_host: 192.168.56.144
+mysqluser: 
+  root: root
+  replica: replica
+mysqlpass:
+  root: Secret-4-root
+  replica: replica
+
+#keepalived
+script: /etc/keepalived/mysqltest.sh
+interval: 2
+weight: 2
+state: BACKUP
+interface: enp0s8
+virtual_router_id: 51
+priority: 255
+advert_int: 1
+auth_type: PASS
+auth_pass: 12345
+virtual_ipaddres: 192.168.56.150/24
+
+#mysqltest.sh
+mysql_host: localhost
+mysql_port: 3306
+mysql_username: root
+mysql_password: Secret-4-root

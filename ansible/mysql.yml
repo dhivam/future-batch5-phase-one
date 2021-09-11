@@ -6,29 +6,15 @@
     - mysql_install
 
 - name: Install keepalived and copy config file for MySQL Master 1
-  hosts: database1
+  hosts: mysqlmaster
   remote_user: future
   become: yes
   roles:
-    - mysql_config1
+    - mysql_master
 
 - name: Install keepalived and copy config file for MySQL Master 2
-  hosts: database2
+  hosts: mysqlslave
   remote_user: future
   become: yes
   roles:
-    - mysql_config2
-
-- name: MySQL Replication Master Node 1
-  hosts: database1
-  remote_user: future
-  become: yes
-  roles:
-    - mysql_rep1
-
-- name: MySQL Replication Master Node 2
-  hosts: database2
-  remote_user: future
-  become: yes
-  roles:
-    - mysql_rep2
+    - mysql_slave

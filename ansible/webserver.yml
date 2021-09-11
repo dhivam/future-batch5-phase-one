@@ -1,13 +1,6 @@
 - name: Create and run webserver container
-  hosts: webserver1
+  hosts: webserver
   remote_user: future
   become: yes
   roles:
-    - webserver1
-
-- name: Create and run webserver container
-  hosts: webserver2
-  remote_user: future
-  become: yes
-  roles:
-    - webserver2
+    - webserver

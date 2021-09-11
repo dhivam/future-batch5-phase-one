@@ -1,16 +1,16 @@
 #!/bin/bash
 
-WEBSERVER1=192.168.56.141
-WEBSERVER2=192.168.56.142
-MYSQL1=192.168.56.143
-MYSQL2=192.168.56.144
-MYSQL_USER=wpuser
-MYSQL_USER_PASSWORD=wordpress123
-MYSQL_DATABASE=wordpress
-MYSQL_ROOT_USER=root
-MYSQL_ROOT_PASSWORD=Secret-4-root
-MYSQL_USER_REPLICA=replica
-MYSQL_USER_PASSWORD_REPLICA=replica
+WEBSERVER1={{ webserver1 }}
+WEBSERVER2={{ webserver1 }}
+MYSQL1={{ mysql1 }}
+MYSQL2={{ mysql2 }}
+MYSQL_USER={{ mysqluser.user }}
+MYSQL_USER_PASSWORD={{ mysqlpassword.user }}
+MYSQL_DATABASE={{ database }}
+MYSQL_ROOT_USER={{ mysqluser.root }}
+MYSQL_ROOT_PASSWORD={{ mysqlpassword.root }}
+MYSQL_USER_REPLICA={{ mysqluser.replika }}
+MYSQL_USER_PASSWORD_REPLICA={{ mysqlpassword.replika }}
 
 MYSQL_PWD="$MYSQL_ROOT_PASSWORD" mysql -u "$MYSQL_ROOT_USER" "$@"  << EOF
 
