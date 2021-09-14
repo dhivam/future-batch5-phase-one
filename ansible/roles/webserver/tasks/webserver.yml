@@ -1,0 +1,25 @@
+- name: Creates directory
+  file:
+    path: "{{ dir_path }}"
+    state: directory
+
+- name: Creates directory
+  file:
+    path: "{{ vol_path }}"
+    state: directory
+
+- name: Copy file to directory webserver
+  copy:
+    src: roles/webserver/files/
+    dest: "{{ dir_path }}"
+
+- name: Change permission for default.conf
+  file:
+    path: "{{ dir_path }}/nginx/default.conf"
+    mode: 0755
+      
+- name: Build images and run containers using docker compose
+  shell:
+    chdir: "{{ dir_path }}"
+    cmd: docker-compose up -d
+

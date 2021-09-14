@@ -3,11 +3,14 @@
     path: "{{ dir_path }}"
     state: directory
 
-- name: Copy file mysql for create user
+- name: Copy file to directori
   template:
     src: create_user.sh.j2
-    dest: "{{ dir_path }}/create_user.sh" 
+    dest: "{{ dir_path }}/create_user.sh"
     mode: 0755
 
-- name: Execute the script mysql
-  command: bash {{ dir_path }}/create_user.sh
+- name: Execute create_user.sh script
+  shell:
+    chdir: "{{ dir_path }}"
+    cmd: bash create_user.sh
+

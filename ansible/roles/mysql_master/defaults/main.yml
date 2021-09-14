@@ -1,13 +1,7 @@
 #my.cnf
 server_id: 1
-replicate_same_server_id: 0
-auto_increment_increment: 10
-auto_increment_offset: 1
 relay_log: /var/lib/mysql/node1-relay-bin
 relay_log_index: /var/lib/mysql/node1-relay-bin.index
-log_error: /var/log/mysql/mysql.error
-master_info_file: /var/lib/mysql/mysql-master.info
-relay_log_info_file: /var/lib/mysql/node1-relay-log.info
 log_bin: /var/lib/mysql/node1-bin
 default_authentication_plugin: mysql_native_password
 
@@ -20,8 +14,6 @@ interface: enp0s8
 virtual_router_id: 51
 priority: 255
 advert_int: 1
-auth_type: PASS
-auth_pass: 12345
 virtual_ipaddres: 192.168.56.150/24
 
 #mysqltest.sh

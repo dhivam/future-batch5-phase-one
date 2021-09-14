@@ -21,5 +21,4 @@
   template:
     src: newrelic-infra.yml.j2
     dest: "{{ infra_config_file }}"
-    mode: 0600
   notify: start agent

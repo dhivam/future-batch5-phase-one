@@ -1,28 +1,5 @@
-- name: Creates directory
-  file:
-    path: "{{ dir_path }}"
-    state: directory
+- name: Transfer file and execute haproxy container
+  import_tasks: haproxy.yml
 
-- name: Copy the required files to run haproxy
-  copy:
-    src: roles/haproxy/files/
-    dest: "{{ dir_path }}"
-
-- name: Change permission for docker-entrypoint.sh
-  file:
-    path: "{{ dir_path }}"
-    mode: 0755    
-    with_items:
-      - { path: '~/haproxy/docker-entrypoint.sh'}
-      - { path: '~/haproxy/haproxy.cfg'}
-      - { path: '~/haproxy/run_container.sh'}
-
-- name: Build haproxy docker image
-  shell:
-    chdir: /home/future/haproxy/
-    cmd: docker build -t my-haproxy .
-
-- name: Run haproxy container
-  shell:
-    chdir: /home/future/haproxy/
-    cmd: bash run_container.sh
+- name: Setting firewalld
+  import_tasks: firewall.yml

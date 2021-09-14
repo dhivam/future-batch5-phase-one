@@ -1,0 +1,7 @@
+- name: Firewalld port for webserver
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+  notify:
+    - reload firewalld

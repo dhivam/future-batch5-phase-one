@@ -7,7 +7,7 @@ RUN apk update \
     && mkdir -p /run/nginx \
     && touch /run/nginx/nginx.pid
 
-ADD ./default.conf /etc/nginx/conf.d/default.conf
+COPy default.conf /etc/nginx/conf.d/default.conf
 
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]

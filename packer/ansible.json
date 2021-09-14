@@ -39,19 +39,12 @@
         "shutdown_command": "echo '{{ user `ssh_pass` }}' | sudo -S shutdown -P now"
     }],
     "provisioners": [{
-            "type": "shell",
-            "inline": [
-                "sudo yum -y install git",
-                "git clone https://github.com/dhivam/future5-phase-one.git",
-                "sudo yum -y install epel-release",
-                "sudo yum -y install ansible"
-            ]
-        },
-        {
-            "type": "shell",
-            "scripts": [
-                "scripts/ansible.sh"
-            ]
-        }
-    ]
+        "type": "shell",
+        "inline": [
+            "sudo yum -y install git",
+            "git clone https://github.com/dhivam/future5-phase-one.git",
+            "sudo yum -y install epel-release",
+            "sudo yum -y install ansible"
+        ]
+    }]
 }

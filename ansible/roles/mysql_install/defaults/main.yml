@@ -3,13 +3,15 @@ dir_path: /home/future/mysql
 
 #create_user.sh
 webserver1: 192.168.56.141
-webserver1: 192.168.56.142
+webserver2: 192.168.56.142
 mysql1: 192.168.56.143
 mysql2: 192.168.56.144
+
 mysqluser: 
   root: root
   user: wpuser
   replika: replica  
+  
 mysqlpassword:
   root: Secret-4-root
   user: wordpress123

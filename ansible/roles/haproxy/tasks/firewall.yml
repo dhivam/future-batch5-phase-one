@@ -1,0 +1,7 @@
+- name: Firewalld open port for haproxy
+  firewalld:
+    port: 80/tcp
+    permanent: yes
+    state: enabled
+  notify:
+    - reload firewalld

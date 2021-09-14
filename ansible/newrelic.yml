@@ -4,13 +4,3 @@
   become: yes
   roles:
     - role: newrelic  
-      nrinfragent_os_name: redhat
-      nrinfragent_os_version: 7
-      nrinfragent_config:
-        log_file: 
-          - /var/log/newrelic/nr-infra.log        
-          - /var/log/messages
-          - /var/log/secure
-          - /var/log/yum.log
-
-        log_to_stdout: false

@@ -1,0 +1,29 @@
+- name: Create a directory
+  file:
+    path: "{{ dir_path }}"
+    state: directory
+
+- name: Copy files to haproxy directory
+  copy:
+    src: roles/haproxy/files/
+    dest: "{{ dir_path }}"
+
+- name: Change permission for docker-entrypoint.sh
+  file:
+    path: "{{ dir_path }}/docker-entrypoint.sh"
+    mode: 0755
+
+- name: Change permission for run_container.sh
+  file:
+    path: "{{ dir_path }}/run_container.sh"
+    mode: 0755
+
+- name: Build haproxy docker image
+  shell:
+    chdir: "{{ dir_path }}"
+    cmd: docker build -t my-haproxy .
+
+- name: Run haproxy container
+  shell:
+    chdir: "{{ dir_path }}"
+    cmd: bash run_container.sh

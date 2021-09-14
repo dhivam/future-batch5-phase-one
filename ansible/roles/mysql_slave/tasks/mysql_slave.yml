@@ -26,4 +26,6 @@
     mode: 0755
 
 - name: Execute file for MySQL replication master-master
-  command: bash {{ dir_path }}/mysql/replication.sh
+  shell:
+    chdir: "{{ dir_path }}"
+    cmd: bash replication.sh
