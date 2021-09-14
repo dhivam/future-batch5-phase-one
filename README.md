@@ -34,6 +34,5 @@ Newrelic :
 
 https://github.com/newrelic/infrastructure-agent-ansible
 
-https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/config-management-tools/
-configure-infrastructure-agent-using-ansible/ 
+https://docs.newrelic.com/docs/infrastructure/install-infrastructure-agent/config-management-tools/configure-infrastructure-agent-using-ansible/ 
 
